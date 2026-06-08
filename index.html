@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>乃木坂46 フォーメーション作成シミュレーター</title>
+  <meta name="description" content="乃木坂46の選抜フォーメーションをブラウザだけで作成・保存・共有できる無料の静的サイト版シミュレーター" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">NOGIZAKA46 FORMATION SIMULATOR</p>
+      <h1>乃木坂46<br>選抜フォーメーション作成</h1>
+      <p class="lead">メンバーを選んで、1列目・2列目・3列目に配置。画像保存・ローカル保存・共有用テキスト出力までできます。</p>
+    </div>
+  </header>
+
+  <main class="app">
+    <section class="panel controls">
+      <h2>設定</h2>
+      <label>タイトル
+        <input id="titleInput" value="オリジナル選抜フォーメーション" />
+      </label>
+      <div class="grid-3">
+        <label>1列目人数<input id="frontCount" type="number" min="1" max="12" value="5" /></label>
+        <label>2列目人数<input id="middleCount" type="number" min="1" max="14" value="7" /></label>
+        <label>3列目人数<input id="backCount" type="number" min="1" max="18" value="8" /></label>
+      </div>
+      <div class="button-row">
+        <button id="applyRows">列数を反映</button>
+        <button id="clearFormation" class="secondary">配置をクリア</button>
+        <button id="saveLocal" class="secondary">保存</button>
+        <button id="loadLocal" class="secondary">読込</button>
+      </div>
+    </section>
+
+    <section class="formation-wrap">
+      <div id="captureArea" class="formation-card">
+        <div class="formation-title" id="formationTitle">オリジナル選抜フォーメーション</div>
+        <div class="stage">STAGE</div>
+        <div id="formation" class="formation"></div>
+      </div>
+      <div class="button-row export-row">
+        <button id="downloadPng">PNG保存</button>
+        <button id="copyText" class="secondary">テキストコピー</button>
+      </div>
+      <textarea id="shareText" readonly placeholder="ここに共有用テキストが出ます"></textarea>
+    </section>
+
+    <aside class="panel member-panel">
+      <h2>メンバー</h2>
+      <input id="search" placeholder="名前・期で検索" />
+      <div class="hint">カードをクリック → 空いている前列から自動配置。配置済みカードをクリックすると外せます。</div>
+      <div id="members" class="members"></div>
+    </aside>
+  </main>
+
+  <section class="panel data-panel">
+    <h2>メンバーデータ編集</h2>
+    <p>画像URLを入れると写真表示に変わります。公式画像や他サイト画像を使う場合は権利・利用条件を確認してください。</p>
+    <textarea id="memberJson"></textarea>
+    <div class="button-row"><button id="applyMembers">メンバーデータを反映</button><button id="resetMembers" class="secondary">初期データに戻す</button></div>
+  </section>
+
+  <footer>
+    <small>Fan-made formation simulator. This site is static and stores data only in your browser.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
